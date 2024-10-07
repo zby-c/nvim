@@ -1,0 +1,32 @@
+snippet qkst # quick start
+    cmake_minimum_required(VERSION ${1:3.21})
+
+    project(${2:ProjName} VERSION ${3})
+
+    add_executable(${2} ${4:main.cpp})
+
+snippet proj # add project
+    project(${1:Name} VERSION ${0})
+
+snippet min # cmake minimum required
+    cmake_minimum_required(VERSION ${0:3.21})
+
+snippet find # find package
+    find_package(${1:Lib} ${0:REQUIRED})
+
+snippet sub # add subdirectory
+    add_subdirectory(${0:src})
+
+snippet exe # add executable
+    add_executable(${1:Proj} ${0:main.cpp})
+
+snippet lib # add library
+    add_library(${1:Proj} ${0:lib.cpp})
+
+snippet link # link libraries
+    target_link_libraries(${1:target} ${0:Lib})
+
+snippet set # set var
+    set(${1:var} ${0:val})
+
+
