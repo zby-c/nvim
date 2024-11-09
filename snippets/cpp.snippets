@@ -1,0 +1,34 @@
+extends c
+
+snippet qkst # quick start [DON'T USE IN PROJECT!]
+    #include <iostream>
+    using namespace std;
+    int main() {
+        ${0}
+        return 0;
+    }
+
+snippet usi # using
+    using ${1} = ${2:int}; 
+
+snippet forr # range for
+    for (${1:auto} ${2:i} : ${3}) {
+        ${0}
+    }
+
+snippet stru # struct
+    struct ${1} {
+        ${0}
+    };
+
+snippet clas # basic class
+    class ${1} {
+        public:
+            ${1}();
+        private:
+            ${2:int m_i;}
+    };
+
+snippet lamb # lambda expr
+    [${1}](${2:int n}) -> ${3:int} { ${0} };
+
