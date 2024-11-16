@@ -3,16 +3,16 @@ return {
     {
         "stevearc/overseer.nvim",
         cmd = {
-            "OverSeerRun",
-            "OverSeerOpen",
-            "OverSeerInfo",
-            "OverSeerBuild",
-            "OverSeerClose",
-            "OverSeerRunCmd",
-            "OverSeerToggle",
-            "OverSeerClearCache",
-            "OverSeerTaskAction",
-            "OverSeerQuickAction"
+            "OverseerRun",
+            "OverseerOpen",
+            "OverseerInfo",
+            "OverseerBuild",
+            "OverseerClose",
+            "OverseerRunCmd",
+            "OverseerToggle",
+            "OverseerClearCache",
+            "OverseerTaskAction",
+            "OverseerQuickAction"
         },
         keys = {
             {
@@ -54,5 +54,32 @@ return {
             --
             -- })
         end
+    },
+    {
+        "nvim-neotest/neotest",
+        dependencies = {
+            "nvim-neotest/nvim-nio",
+            "nvim-lua/plenary.nvim",
+            "antoinemadec/FixCursorHold.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "orjangj/neotest-ctest",
+        },
+        cmd = "Neotest",
+        opts = function()
+            return {
+                adapters = {
+                    -- Load with default config
+                    require("neotest-ctest").setup({})
+                },
+                consumers = {
+                    overseer = require("neotest.consumers.overseer"),
+                }
+            }
+        end,
+        keys = {
+            { "<Leader>t",     "<Cmd>Neotest summary<CR>",  desc = "Neotest summary" },
+            { "<Leader>T",     "<Cmd>Neotest run last<CR>", desc = "Neotest run last" },
+            { "<Leader><C-t>", "<Cmd>Neotest run file<CR>", desc = "Neotest run file" }
+        }
     }
 }

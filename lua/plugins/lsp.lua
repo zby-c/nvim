@@ -5,6 +5,14 @@ return { {
     dependencies = {
         {
             "williamboman/mason.nvim",
+            cmd = {
+                "Mason",
+                "MasonLog",
+                "MasonUpdate",
+                "MasonInstall",
+                "MasonUninstall",
+                "MasonUninstallAll"
+            },
             opts = {
                 ui = {
                     icons = {
@@ -20,7 +28,8 @@ return { {
             ensure_installed = {
                 "clangd",
                 "lua_ls",
-                "cmake"
+                "cmake",
+                "jsonls"
             }
         }
     }
@@ -80,9 +89,17 @@ return { {
             cmd = {
                 "clangd",
                 "--background-index",
-                "--clang-tidy"
+                "--clang-tidy",
+                "--header-insertion=never"
             }
+        }
 
+        -- jsonls
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+        lspconfig.jsonls.setup {
+            capabilities = capabilities,
         }
     end,
     keys = {

@@ -1,4 +1,4 @@
--- tool.lua - Many useful plugins
+-- tool.lua - Many useful features
 return {
     {
         "nvim-neo-tree/neo-tree.nvim",
@@ -55,7 +55,6 @@ return {
             { "<Leader>b", "<Cmd>Telescope buffers<CR>",                        desc = "Telescope buffers" },
             { "<Leader>k", "<Cmd>Telescope keymaps<CR>",                        desc = "Telescope keymaps" },
             { "<Leader>h", "<Cmd>Telescope help_tags<CR>",                      desc = "Telescope help tags" },
-            { "<Leader>t", "<Cmd>Telescope filetypes theme=dropdown<CR>",       desc = "Telescope file types" },
             { "gd",        "<Cmd>Telescope lsp_definitions theme=ivy<CR>",      desc = "LSP goto definitions+" },
             { "gr",        "<Cmd>Telescope lsp_references theme=ivy<CR>",       desc = "LSP goto references+" },
             { "gI",        "<Cmd>Telescope lsp_implementations theme=ivy<CR>",  desc = "LSP goto implementations+" },
@@ -63,31 +62,6 @@ return {
             { "gl",        "<Cmd>Telescope diagnostics<CR>",                    desc = "LSP goto diagnostics" },
             { "gs",        "<Cmd>Telescope lsp_document_symbols<CR>",           desc = "LSP document symbols" },
             { "gS",        "<Cmd>Telescope lsp_workspace_symbols<CR>",          desc = "LSP workspace symbols" }
-        }
-    },
-    {
-        "folke/which-key.nvim",
-        event = "VeryLazy",
-        opts = {
-            icons = {
-                mappings = false
-            }
-        },
-        keys = {
-            {
-                "<leader>/",
-                function()
-                    require("which-key").show({ global = false })
-                end,
-                desc = "Buffer local keymaps (which-key)",
-            },
-            {
-                "<leader>?",
-                function()
-                    require("which-key").show({ --[[  global = false  ]] })
-                end,
-                desc = "Global keymaps (which-key)",
-            }
         }
     },
     {
@@ -104,39 +78,9 @@ return {
         },
         opts = {
             shell = "pwsh",
-            direction = "float"
-        },
-        keys = {
-            { "<C-\\>",   "",                                                 desc = "+term" },
-            { "<C-\\>\\", "<Cmd>0 ToggleTerm direction=float name=Term0<CR>", desc = "Toggle term 0" },
-            { "<C-\\>1",  "<Cmd>1 ToggleTerm direction=float name=Term1<CR>", desc = "Toggle term 1" },
-            { "<C-\\>2",  "<Cmd>2 ToggleTerm direction=float name=Term2<CR>", desc = "Toggle term 2" },
-            { "<C-\\>3",  "<cmd>3 ToggleTerm direction=float name=Term3<cr>", desc = "Toggle term 3" },
-            { "<C-\\>4",  "<cmd>4 ToggleTerm direction=tab name=Term4<cr>",   desc = "Toggle term 4 (TAB)" }
+            direction = "float",
+            open_mapping = [[<C-\>]]
         }
     },
-    {
-        "folke/flash.nvim",
-        event = "VeryLazy",
-        opts = {},
-        keys = {
-            { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
-            { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
-            { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Flash Remote Flash" },
-            { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Flash Treesitter Search" },
-            { "<C-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Flash Toggle Search" },
-        }
-    },
-    {
-        "iamcco/markdown-preview.nvim",
-        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-        ft = { "markdown" },
-        build = function()
-            require("lazy").load({ plugins = { "markdown-preview.nvim" } })
-            vim.fn["mkdp#util#install"]()
-        end,
-        keys = {
-            { "<F4>", "<Cmd>MarkdownPreviewToggle<CR>", desc = "Markdown preview" }
-        }
-    }
+
 }

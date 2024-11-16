@@ -1,4 +1,4 @@
--- coding.lua - Completion and other editing operations
+-- coding.lua - Useful things for coding
 return {
     {
         "hrsh7th/nvim-cmp",
